@@ -4,7 +4,7 @@ A comprehensive dashboard analyzing the probability of a market correction based
 
 ## Live Dashboard
 
-**[View the Analysis →](https://yourusername.github.io/correction-analysis/)**
+**[View the Analysis →](https://alphaonedev.github.io/correction_crash/)**
 
 ---
 
