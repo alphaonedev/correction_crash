@@ -1,6 +1,6 @@
 # Market Correction Probability Analysis
 
-A comprehensive dashboard analyzing the probability of a market correction based on sector options flow data, technical indicators, and cross-asset correlations.
+A comprehensive dashboard analyzing the probability of a market correction based on live market data, sector options flow, technical indicators, and cross-asset correlations.
 
 ## Live Dashboard
 
@@ -8,54 +8,92 @@ A comprehensive dashboard analyzing the probability of a market correction based
 
 ---
 
-## Current Assessment (Jan 4, 2026)
+## Current Assessment (Jan 12, 2026 | 3:03 PM EST)
 
-| Metric | Value |
-|--------|-------|
-| **Correction Probability** | 68% |
-| **Primary Scenario** | 5-10% correction |
-| **Timeframe** | 4-8 weeks |
-| **Target Range** | $615-$650 SPY |
-| **Crash Risk (10-15%)** | 25% probability |
-
----
-
-## Key Sector Flow Data (as of 2026-01-02)
-
-### Bearish Positioning
-| Sector | Delta ($M) | Percentile |
-|--------|-----------|------------|
-| Equity ETF | -$950.6 | 31st |
-| Technology | -$218.2 | 53rd |
-| Crypto | -$203.9 | 37th |
-| Energy ETF | -$37.5 | 13th |
-
-### Bullish Positioning  
-| Sector | Delta ($M) | Percentile |
-|--------|-----------|------------|
-| Consumer Cyclical | +$357.8 | 90th |
-| Financial ETF | +$200.2 | **100th** |
-| Communication Services | +$147.5 | 90th |
-| Basic Materials | +$85.3 | 97th |
-
-### Critical Risk Factor
-- **Gamma Exposure**: -$1,388.1M on Equity ETFs (12th percentile)
-- **Vega (Vol Hedge)**: +$3.6M (70th percentile)
-
-This combination creates a "gamma trap" where market makers must sell into weakness.
+| Metric | Value | Change |
+|--------|-------|--------|
+| **SPY Price** | $695.85 | +1.9% (vs Jan 2) |
+| **Correction Probability** | 65% | ↓ from 75% |
+| **Primary Scenario** | Rally vs Correction (35% each) | |
+| **Crash Risk (10-15%)** | 20% | ↓ from 30% |
+| **VIX** | 15.56 | +7.4% |
+| **10Y Treasury** | 4.17% | Stable |
 
 ---
 
-## Cross-Asset Signals
+## 🚨 Breaking: Fed Independence Under Attack
 
-| Asset | Current | 3M Change | Signal |
-|-------|---------|-----------|--------|
-| Gold (GLD) | $398.28 | +18.5% | Risk-Off |
-| Silver (SLV) | $65.75 | +76% | Risk-Off |
-| Copper | $9,835/ton | +3.2% | Neutral |
-| 10Y Treasury | 4.18% | +22bp | Tightening |
+On January 11, 2026, Fed Chair Powell revealed DOJ grand jury subpoenas targeting the Federal Reserve. Despite this institutional crisis, SPY rallied to near all-time highs, suggesting markets view this as noise rather than systemic risk.
 
-**Verdict**: 4 of 6 cross-asset signals flashing risk-off.
+---
+
+## Key Live Data (Jan 12, 2026)
+
+### Equity Markets
+| Symbol | Price | Day Change | Signal |
+|--------|-------|------------|--------|
+| SPY | $695.85 | +0.26% | 52W HIGH |
+| QQQ | $628.53 | +0.30% | BULLISH |
+| XLK | $147.19 | +0.71% | BULLISH |
+| XLF | $55.21 | -0.93% | BEARISH |
+
+### Cross-Asset Signals
+| Asset | Price | 3M Change | Signal |
+|-------|-------|-----------|--------|
+| Gold (GLD) | $423.40 | +24.5% | Risk-Off |
+| Silver (SLV) | $77.42 | +92% | Risk-Off |
+| Copper | $5.96/lb | +38% | Record High |
+| 10Y Treasury | 4.17% | +22bp | Stable |
+
+**Verdict:** 3 of 6 signals risk-off, 3 risk-on — unusual divergence
+
+---
+
+## Scenario Probabilities
+
+| Scenario | Probability | Target |
+|----------|-------------|--------|
+| Continued Rally | 35% | $710-$730 SPY |
+| 5-10% Correction | 35% | $625-$660 SPY |
+| 10-15% Crash | 20% | $590-$625 SPY |
+| Sideways Chop | 10% | $680-$700 SPY |
+
+---
+
+## Critical Levels
+
+- **Bullish Breakout:** $700+ (new ATH trigger)
+- **Current Price:** $695.85
+- **Gamma Flip:** $680 (mechanical selling below)
+- **Major Support:** $650 (correction target)
+- **Crash Level:** $615-$620
+
+---
+
+## Key Risk Events
+
+| Date | Event | Risk Level |
+|------|-------|------------|
+| Jan 13 | CPI Release | HIGH |
+| Jan 14 | PPI Release | MEDIUM |
+| Jan 16 | OPEX (2.17 P/C) | HIGH |
+| Jan 21 | Supreme Court | HIGH |
+| This Week | Bank Earnings | MEDIUM |
+
+---
+
+## Historical Options Data (Jan 2, 2026)
+
+Despite market rally, options positioning remains bearish:
+
+| Sector | P/C Ratio | Signal |
+|--------|-----------|--------|
+| XLP (Defensive) | 5.41 | EXTREME BEARISH |
+| XLU (Utilities) | 3.03 | VERY BEARISH |
+| SPY (Broad Mkt) | 1.90 | BEARISH |
+| XLK (Tech) | 1.63 | BEARISH |
+
+**Market P/C Ratio:** 1.83 (elevated vs 0.7-1.0 normal)
 
 ---
 
@@ -71,10 +109,10 @@ This combination creates a "gamma trap" where market makers must sell into weakn
 
 ## Data Sources
 
-- **Sector Options Flow**: AlphaOne sector statistical analysis
-- **Technical Indicators**: Alpha Vantage API
-- **Cross-Asset Data**: GLD, SLV, XLU, Copper, Treasuries
-- **Analysis**: Claude AI
+- **Live Market Data:** Alpaca Markets API
+- **Historical Options:** Alpha Vantage API
+- **Cross-Asset Data:** GLD, SLV, Copper, Treasuries
+- **Analysis:** Claude AI
 
 ---
 
@@ -103,3 +141,5 @@ Under the following terms:
 ---
 
 © 2026 AlphaOne LLC | Powered by Claude AI | Not affiliated with any broker or exchange
+
+*Last Updated: January 12, 2026 3:03 PM EST*
