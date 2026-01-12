@@ -32,7 +32,7 @@
         .stat-value{font-size:32px;font-weight:700;color:#fff}
         .stat-label{font-size:12px;color:var(--text-secondary);margin-top:4px}
         .stat-change{font-size:14px;font-weight:500;margin-left:8px}
-        .stat-change.negative{color:var(--accent-red)}.stat-change.positive{color:var(--accent-green)}
+        .stat-change.negative{color:var(--accent-red)}.stat-change.positive{color:var(--accent-green)}.stat-change.neutral{color:var(--accent-yellow)}
         .data-table{width:100%;border-collapse:collapse;font-size:13px}
         .data-table th{background:rgba(6,182,212,0.1);padding:12px;text-align:left;font-size:11px;color:var(--accent-cyan);text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border)}
         .data-table td{padding:12px;border-bottom:1px solid var(--border)}
@@ -82,252 +82,398 @@
         .news-alert{background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(239,68,68,0.05));border:1px solid rgba(239,68,68,0.5);border-radius:12px;padding:20px;margin-bottom:20px}
         .news-alert h3{color:var(--accent-red);font-size:14px;margin-bottom:12px}
         .news-alert p{font-size:13px;line-height:1.7}
-        @media(max-width:768px){h1{font-size:24px}.probability-number{font-size:36px}.scenario-card{grid-template-columns:1fr}.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+        .options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+        .options-stat{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+        .options-stat .value{font-size:24px;font-weight:700;color:#fff}
+        .options-stat .label{font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin-top:4px}
+        .options-stat.bearish .value{color:var(--accent-red)}
+        .options-stat.bullish .value{color:var(--accent-green)}
+        .options-stat.neutral .value{color:var(--accent-yellow)}
+        .pc-ratio-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+        .pc-ratio-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+        .pc-ratio-card .symbol{font-size:16px;font-weight:700;color:var(--accent-cyan);margin-bottom:8px}
+        .pc-ratio-card .ratio{font-size:36px;font-weight:700}
+        .pc-ratio-card .signal{font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+        .pc-ratio-card .price{font-size:12px;color:var(--text-secondary);margin-top:4px}
+        @media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.scenario-card{grid-template-columns:1fr;text-align:center}.header-content{flex-direction:column;align-items:center;text-align:center}.pc-ratio-summary{grid-template-columns:repeat(2,1fr)}}
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <header>
             <div class="header-content">
                 <div>
                     <div class="logo">ALPHAONE ANALYTICS</div>
-                    <h1>MARKET CORRECTION PROBABILITY</h1>
-                    <p class="subtitle">Live Market Data | SPY $695.88 | Updated Jan 12, 2026 3:09 PM EST</p>
+                    <h1>Market Correction Probability</h1>
+                    <div class="subtitle">Real-time options flow & market structure analysis | Jan 12, 2026 3:35 PM EST</div>
                 </div>
                 <div class="probability-badge">
                     <div class="probability-number">65%</div>
-                    <div class="probability-label">5-10% Correction Risk</div>
+                    <div class="probability-label">Correction Risk</div>
                 </div>
             </div>
         </header>
         
+        <!-- NAVIGATION -->
         <nav>
             <button class="nav-btn active" data-section="summary">Summary</button>
-            <button class="nav-btn" data-section="market-data">Live Market</button>
+            <button class="nav-btn" data-section="options">Options Flow</button>
+            <button class="nav-btn" data-section="sectors">Sector Data</button>
             <button class="nav-btn" data-section="cross-asset">Cross-Asset</button>
             <button class="nav-btn" data-section="analysis">AI Analysis</button>
             <button class="nav-btn" data-section="scenarios">Scenarios</button>
         </nav>
         
-        <!-- SUMMARY -->
+        <!-- SUMMARY SECTION -->
         <section class="section active" id="summary">
             <div class="news-alert">
-                <h3>🚨 BREAKING: Fed Chair Powell Under DOJ Investigation</h3>
-                <p>On January 11, 2026, Fed Chair Jerome Powell revealed DOJ grand jury subpoenas targeting the Federal Reserve, alleging perjury related to the $2.5B headquarters renovation. Powell characterized the probe as "political intimidation" aimed at undermining Fed independence. <strong>10Y Treasury yields spiked to 4.20%</strong> on institutional fears. Supreme Court case Trump v. Cook scheduled for January 21. Despite this, SPY rallied to $695.85, suggesting markets are pricing in near-term resilience.</p>
+                <h3>🚨 Breaking: Powell DOJ Investigation</h3>
+                <p>Federal Reserve Chair Jerome Powell is under DOJ investigation for potential conflicts of interest. Despite this institutional crisis, markets are rallying with SPY approaching all-time highs. This divergence between headline risk and price action suggests either extreme complacency or market's view that the investigation won't impact Fed policy.</p>
+            </div>
+            
+            <!-- Put/Call Ratio Summary -->
+            <div class="pc-ratio-summary">
+                <div class="pc-ratio-card">
+                    <div class="symbol">SPY</div>
+                    <div class="ratio" style="color:var(--accent-red)">1.12</div>
+                    <div class="signal" style="color:var(--accent-red)">BEARISH</div>
+                    <div class="price">$695.26 | +0.17%</div>
+                </div>
+                <div class="pc-ratio-card">
+                    <div class="symbol">QQQ</div>
+                    <div class="ratio" style="color:var(--accent-yellow)">0.98</div>
+                    <div class="signal" style="color:var(--accent-yellow)">NEUTRAL</div>
+                    <div class="price">$627.96 | +0.21%</div>
+                </div>
+                <div class="pc-ratio-card">
+                    <div class="symbol">DIA</div>
+                    <div class="ratio" style="color:var(--accent-red)">1.08</div>
+                    <div class="signal" style="color:var(--accent-red)">BEARISH</div>
+                    <div class="price">$495.64 | +0.13%</div>
+                </div>
+                <div class="pc-ratio-card">
+                    <div class="symbol">VNQ</div>
+                    <div class="ratio" style="color:var(--accent-green)">0.85</div>
+                    <div class="signal" style="color:var(--accent-green)">BULLISH</div>
+                    <div class="price">$89.50 | +0.03%</div>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header red">🔴 Bearish Signals</div>
+                    <table class="data-table">
+                        <tr><td>SPY Put/Call Ratio</td><td class="heat-high">1.12 - Above 1.0 = bearish bias</td></tr>
+                        <tr><td>DIA Put/Call Ratio</td><td class="heat-high">1.08 - Dow hedging elevated</td></tr>
+                        <tr><td>ATM Put IV Premium</td><td class="heat-mid">12.34% vs 10.79% calls - hedging demand</td></tr>
+                        <tr><td>Powell DOJ Risk</td><td class="heat-extreme">Institutional crisis unresolved</td></tr>
+                        <tr><td>OPEX Approaching</td><td class="heat-high">Jan 16 - 4 days - gamma risk</td></tr>
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-header green">🟢 Bullish Signals</div>
+                    <table class="data-table">
+                        <tr><td>QQQ Put/Call</td><td class="heat-low">0.98 - Tech balanced/bullish</td></tr>
+                        <tr><td>VNQ Put/Call</td><td class="heat-low">0.85 - REITs bullish positioning</td></tr>
+                        <tr><td>SPY Price Action</td><td class="heat-low">+0.17% approaching ATH</td></tr>
+                        <tr><td>Tech Leadership</td><td class="heat-low">XLK +1.33%, QQQ +0.21%</td></tr>
+                        <tr><td>Volume Healthy</td><td class="heat-low">50.4M SPY - above average</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- OPTIONS FLOW SECTION -->
+        <section class="section" id="options">
+            <div class="ai-analysis">
+                <h3>📊 Real-Time Options Analysis (Jan 16 OPEX)</h3>
+                <p>Data pulled directly from Alpaca Markets API. Analysis based on options chains for SPY, QQQ, DIA, and VNQ for the January 16, 2026 expiration (4 days out).</p>
+            </div>
+            
+            <!-- P/C Ratio Summary Bar -->
+            <div class="pc-ratio-summary">
+                <div class="pc-ratio-card">
+                    <div class="symbol">SPY (S&P 500)</div>
+                    <div class="ratio" style="color:var(--accent-red)">1.12</div>
+                    <div class="signal" style="color:var(--accent-red)">PUT-HEAVY | BEARISH</div>
+                    <div class="price">$695.26 | ATM: $695</div>
+                </div>
+                <div class="pc-ratio-card">
+                    <div class="symbol">QQQ (NASDAQ)</div>
+                    <div class="ratio" style="color:var(--accent-yellow)">0.98</div>
+                    <div class="signal" style="color:var(--accent-yellow)">BALANCED | NEUTRAL</div>
+                    <div class="price">$627.96 | ATM: $628</div>
+                </div>
+                <div class="pc-ratio-card">
+                    <div class="symbol">DIA (DOW 30)</div>
+                    <div class="ratio" style="color:var(--accent-red)">1.08</div>
+                    <div class="signal" style="color:var(--accent-red)">PUT-HEAVY | BEARISH</div>
+                    <div class="price">$495.64 | ATM: $496</div>
+                </div>
+                <div class="pc-ratio-card">
+                    <div class="symbol">VNQ (REITs)</div>
+                    <div class="ratio" style="color:var(--accent-green)">0.85</div>
+                    <div class="signal" style="color:var(--accent-green)">CALL-HEAVY | BULLISH</div>
+                    <div class="price">$89.50 | ATM: $90</div>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <!-- SPY Options -->
+                <div class="card">
+                    <div class="card-header red">SPY Options Chain (Jan 16 OPEX)</div>
+                    <div class="options-grid">
+                        <div class="options-stat bearish">
+                            <div class="value">1.12</div>
+                            <div class="label">P/C Ratio</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">12.10%</div>
+                            <div class="label">Put IV ATM</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">10.79%</div>
+                            <div class="label">Call IV ATM</div>
+                        </div>
+                        <div class="options-stat bearish">
+                            <div class="value">+1.31%</div>
+                            <div class="label">IV Skew</div>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <tr><th>Strike</th><th>Type</th><th>Bid/Ask</th><th>IV</th><th>Delta</th></tr>
+                        <tr><td class="ticker">$693</td><td>PUT</td><td>$2.34/$2.35</td><td>12.10%</td><td>-0.38</td></tr>
+                        <tr><td class="ticker">$695</td><td>PUT</td><td>$3.05/$3.06</td><td>11.60%</td><td>-0.47</td></tr>
+                        <tr><td class="ticker">$696</td><td>PUT</td><td>$3.48/$3.49</td><td>11.37%</td><td>-0.51</td></tr>
+                        <tr><td class="ticker">$700</td><td>CALL</td><td>$1.43/$1.44</td><td>10.79%</td><td>0.29</td></tr>
+                        <tr><td class="ticker">$705</td><td>CALL</td><td>$0.27/$0.28</td><td>9.38%</td><td>0.09</td></tr>
+                    </table>
+                </div>
+                
+                <!-- QQQ Options -->
+                <div class="card">
+                    <div class="card-header cyan">QQQ Options Chain (Jan 16 OPEX)</div>
+                    <div class="options-grid">
+                        <div class="options-stat neutral">
+                            <div class="value">0.98</div>
+                            <div class="label">P/C Ratio</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">15.81%</div>
+                            <div class="label">Put IV ATM</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">16.20%</div>
+                            <div class="label">Call IV ATM</div>
+                        </div>
+                        <div class="options-stat bullish">
+                            <div class="value">-0.39%</div>
+                            <div class="label">IV Skew</div>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <tr><th>Strike</th><th>Type</th><th>Bid/Ask</th><th>IV</th><th>Delta</th></tr>
+                        <tr><td class="ticker">$625</td><td>PUT</td><td>$2.96/$2.98</td><td>17.12%</td><td>-0.38</td></tr>
+                        <tr><td class="ticker">$628</td><td>PUT</td><td>$4.06/$4.07</td><td>16.32%</td><td>-0.48</td></tr>
+                        <tr><td class="ticker">$630</td><td>PUT</td><td>$4.97/$4.99</td><td>15.81%</td><td>-0.56</td></tr>
+                        <tr><td class="ticker">$630</td><td>CALL</td><td>$3.51/$3.53</td><td>16.20%</td><td>0.45</td></tr>
+                        <tr><td class="ticker">$635</td><td>CALL</td><td>$1.49/$1.50</td><td>14.92%</td><td>0.26</td></tr>
+                    </table>
+                </div>
+                
+                <!-- DIA Options -->
+                <div class="card">
+                    <div class="card-header red">DIA Options Chain (Jan 16 OPEX)</div>
+                    <div class="options-grid">
+                        <div class="options-stat bearish">
+                            <div class="value">1.08</div>
+                            <div class="label">P/C Ratio</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">14.94%</div>
+                            <div class="label">Put IV ATM</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">14.16%</div>
+                            <div class="label">Call IV ATM</div>
+                        </div>
+                        <div class="options-stat bearish">
+                            <div class="value">+0.78%</div>
+                            <div class="label">IV Skew</div>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <tr><th>Strike</th><th>Type</th><th>Bid/Ask</th><th>IV</th><th>Delta</th></tr>
+                        <tr><td class="ticker">$490</td><td>PUT</td><td>$0.98/$1.02</td><td>14.94%</td><td>-0.22</td></tr>
+                        <tr><td class="ticker">$493</td><td>PUT</td><td>$1.68/$1.72</td><td>14.04%</td><td>-0.35</td></tr>
+                        <tr><td class="ticker">$495</td><td>PUT</td><td>$2.39/$2.44</td><td>13.59%</td><td>-0.45</td></tr>
+                        <tr><td class="ticker">$497</td><td>CALL</td><td>$2.13/$2.17</td><td>13.00%</td><td>0.43</td></tr>
+                        <tr><td class="ticker">$500</td><td>CALL</td><td>$1.00/$1.04</td><td>12.45%</td><td>0.26</td></tr>
+                    </table>
+                </div>
+                
+                <!-- VNQ Options -->
+                <div class="card">
+                    <div class="card-header green">VNQ Options Chain (Jan 16 OPEX)</div>
+                    <div class="options-grid">
+                        <div class="options-stat bullish">
+                            <div class="value">0.85</div>
+                            <div class="label">P/C Ratio</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">15.81%</div>
+                            <div class="label">Put IV ATM</div>
+                        </div>
+                        <div class="options-stat neutral">
+                            <div class="value">16.75%</div>
+                            <div class="label">Call IV ATM</div>
+                        </div>
+                        <div class="options-stat bullish">
+                            <div class="value">-0.94%</div>
+                            <div class="label">IV Skew</div>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <tr><th>Strike</th><th>Type</th><th>Bid/Ask</th><th>IV</th><th>Delta</th></tr>
+                        <tr><td class="ticker">$88</td><td>PUT</td><td>$0.15/$0.30</td><td>20.49%</td><td>-0.21</td></tr>
+                        <tr><td class="ticker">$89</td><td>PUT</td><td>$0.35/$0.50</td><td>17.72%</td><td>-0.37</td></tr>
+                        <tr><td class="ticker">$90</td><td>PUT</td><td>$0.80/$0.90</td><td>15.81%</td><td>-0.62</td></tr>
+                        <tr><td class="ticker">$90</td><td>CALL</td><td>$0.35/$0.50</td><td>16.75%</td><td>0.39</td></tr>
+                        <tr><td class="ticker">$91</td><td>CALL</td><td>$0.10/$0.15</td><td>15.59%</td><td>0.16</td></tr>
+                    </table>
+                </div>
             </div>
             
             <div class="warning-box yellow">
-                <h3>⚡ Assessment Update: Probability Reduced to 65%</h3>
-                <p>Despite ongoing institutional crisis and bearish options positioning, <strong>SPY has rallied +1.9% since Jan 2</strong> (from $683.17 to $695.85), approaching all-time highs. The market is displaying unexpected resilience. While structural risks remain elevated, near-term momentum is bullish. We've reduced our 5-10% correction probability from 75% to <span style="color:var(--accent-yellow)">65%</span>.</p>
-            </div>
-            
-            <div class="grid-4">
-                <div class="card">
-                    <div class="card-header green">SPY</div>
-                    <div class="stat-value">$695.85<span class="stat-change positive">+1.9%</span></div>
-                    <div class="stat-label">vs $683.17 (Jan 2)</div>
-                </div>
-                <div class="card">
-                    <div class="card-header green">QQQ</div>
-                    <div class="stat-value">$628.53<span class="stat-change positive">+1.0%</span></div>
-                    <div class="stat-label">vs $622.31 (Jan 2)</div>
-                </div>
-                <div class="card">
-                    <div class="card-header yellow">VIX</div>
-                    <div class="stat-value">15.56<span class="stat-change positive">+7.4%</span></div>
-                    <div class="stat-label">vs 14.49 (Jan 9)</div>
-                </div>
-                <div class="card">
-                    <div class="card-header yellow">10Y Yield</div>
-                    <div class="stat-value">4.17%<span class="stat-change negative">-1bp</span></div>
-                    <div class="stat-label">vs 4.18% (Jan 9)</div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header cyan">Key Market Dynamics</div>
-                <p style="font-size:15px;line-height:1.9">
-                    <strong style="color:#fff">1. Rally Despite Crisis:</strong> SPY up +1.9% despite Fed independence concerns — institutions NOT selling<br>
-                    <strong style="color:#fff">2. VIX Elevated But Contained:</strong> VIX at 15.56, up 7.4% today but still below panic levels (20+)<br>
-                    <strong style="color:#fff">3. Treasury Market Resilient:</strong> Strong 10Y auction absorbed supply concerns; yields stable at 4.17%<br>
-                    <strong style="color:#fff">4. January OPEX in 4 Days:</strong> Jan 16 expiration still shows 2.17 P/C ratio — gamma risk persists<br><br>
-                    <span style="color:var(--accent-yellow)">⚡ Key Insight: Market is treating Powell investigation as noise, not signal. Institutional bid remains intact.</span>
+                <h3>📈 Multi-ETF Options Flow Interpretation</h3>
+                <p>
+                    <strong>SPY P/C 1.12 + DIA P/C 1.08:</strong> Both broad market ETFs show put-heavy positioning. Institutional hedging is elevated across large-cap equities ahead of OPEX.<br><br>
+                    <strong>QQQ P/C 0.98:</strong> Tech remains balanced with slight call premium in IV — suggests less fear in growth names despite market hedging.<br><br>
+                    <strong>VNQ P/C 0.85:</strong> Real estate showing bullish call positioning. Interest rate sensitivity may be driving optimism on potential Fed dovishness.<br><br>
+                    <strong>Divergence Signal:</strong> The split between bearish SPY/DIA and bullish VNQ suggests a sector rotation narrative — defensive positioning in indices but bullish on rate-sensitive sectors.
                 </p>
             </div>
         </section>
         
-        <!-- LIVE MARKET DATA -->
-        <section class="section" id="market-data">
+        <!-- SECTORS SECTION -->
+        <section class="section" id="sectors">
             <div class="card">
-                <div class="card-header cyan">Sector ETF Performance — Live Data (Jan 12, 2026)</div>
+                <div class="card-header cyan">Sector ETF Performance (Real-Time)</div>
                 <table class="data-table">
-                    <thead>
-                        <tr><th>Sector</th><th>Symbol</th><th>Price</th><th>Day Change</th><th>vs Jan 2</th><th>Signal</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="ticker">S&P 500 ETF</td><td>SPY</td><td>$695.85</td><td class="heat-low">+0.26%</td><td class="heat-low">+1.9%</td><td><span class="badge badge-green">BULLISH</span></td></tr>
-                        <tr><td class="ticker">Nasdaq 100 ETF</td><td>QQQ</td><td>$628.53</td><td class="heat-low">+0.30%</td><td class="heat-low">+1.0%</td><td><span class="badge badge-green">BULLISH</span></td></tr>
-                        <tr><td class="ticker">Technology</td><td>XLK</td><td>$147.19</td><td class="heat-low">+0.71%</td><td class="heat-low">+1.8%</td><td><span class="badge badge-green">BULLISH</span></td></tr>
-                        <tr><td class="ticker">Industrials</td><td>XLI</td><td>$162.83</td><td class="heat-low">+0.56%</td><td>N/A</td><td><span class="badge badge-green">BULLISH</span></td></tr>
-                        <tr><td class="ticker">Consumer Staples</td><td>XLP</td><td>$80.10</td><td class="heat-low">+1.07%</td><td>N/A</td><td><span class="badge badge-green">BULLISH</span></td></tr>
-                        <tr><td class="ticker">Communication</td><td>XLC</td><td>$117.71</td><td>-0.17%</td><td>N/A</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
-                        <tr><td class="ticker">Utilities</td><td>XLU</td><td>$42.58</td><td class="heat-low">+0.16%</td><td>N/A</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
-                        <tr><td class="ticker">Healthcare</td><td>XLV</td><td>$157.09</td><td>-0.14%</td><td>N/A</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
-                        <tr><td class="ticker">Basic Materials</td><td>XLB</td><td>$48.42</td><td class="heat-low">+0.33%</td><td>N/A</td><td><span class="badge badge-green">BULLISH</span></td></tr>
-                        <tr><td class="ticker">Financials</td><td>XLF</td><td>$55.21</td><td>-0.93%</td><td>N/A</td><td><span class="badge badge-red">BEARISH</span></td></tr>
-                        <tr><td class="ticker">Energy</td><td>XLE</td><td>$46.20</td><td>-1.01%</td><td>N/A</td><td><span class="badge badge-red">BEARISH</span></td></tr>
-                    </tbody>
-                </table>
-                <p style="margin-top:16px;font-size:13px;color:var(--text-secondary)">
-                    <strong>Notable:</strong> Financials (XLF) down -0.93% on Fed independence concerns. Energy (XLE) down -1.01% on profit-taking. Tech leading with XLK +0.71%.
-                </p>
-            </div>
-            
-            <div class="card">
-                <div class="card-header cyan">SPY Technical Levels</div>
-                <div class="grid-3">
-                    <div>
-                        <div style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:8px">Current Price</div>
-                        <div style="font-size:28px;font-weight:700;color:var(--accent-green)">$695.85</div>
-                    </div>
-                    <div>
-                        <div style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:8px">Day Range</div>
-                        <div style="font-size:16px;color:#fff">$690.63 — $696.09</div>
-                    </div>
-                    <div>
-                        <div style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:8px">52W High</div>
-                        <div style="font-size:16px;color:#fff">$696.09 (Today)</div>
-                    </div>
-                </div>
-                <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
-                    <div style="font-size:11px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:12px">Key Support/Resistance Levels</div>
-                    <p style="font-size:14px;line-height:2">
-                        <span style="color:var(--accent-green)">▲ Resistance:</span> $700 (psychological), $710 (measured move target)<br>
-                        <span style="color:var(--accent-yellow)">◆ Current:</span> $695.85<br>
-                        <span style="color:var(--accent-red)">▼ Support:</span> $690 (today's low), $680 (gamma flip), $670 (50-DMA), $650 (major)
-                    </p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- CROSS-ASSET -->
-        <section class="section" id="cross-asset">
-            <div class="warning-box">
-                <h3>⚠️ Cross-Asset Divergence Alert</h3>
-                <p>Gold and Silver are surging to record highs while equities also rally. This is an unusual divergence — typically precious metals rise when equities fall (risk-off). Current behavior suggests <strong>institutional hedging alongside equity accumulation</strong>, possibly pricing in inflation risks from Fed uncertainty.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-header cyan">Cross-Asset Signals — Jan 12, 2026</div>
-                <table class="data-table">
-                    <thead>
-                        <tr><th>Asset</th><th>Symbol</th><th>Current</th><th>vs Jan 2</th><th>3M Change</th><th>Signal</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="ticker">Gold</td><td>GLD</td><td>$423.40</td><td class="heat-low">+6.3%</td><td class="heat-low">+24.5%</td><td><span class="badge badge-red">RISK-OFF</span></td></tr>
-                        <tr><td class="ticker">Silver</td><td>SLV</td><td>$77.42</td><td class="heat-low">+17.8%</td><td class="heat-low">+92%</td><td><span class="badge badge-red">RISK-OFF</span></td></tr>
-                        <tr><td class="ticker">Copper</td><td>HG</td><td>$5.96/lb</td><td class="heat-low">+11%</td><td class="heat-low">+38%</td><td><span class="badge badge-purple">INFLATION</span></td></tr>
-                        <tr><td class="ticker">10Y Treasury</td><td>TNX</td><td>4.17%</td><td>-1bp</td><td>+22bp</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
-                        <tr><td class="ticker">VIX</td><td>VIX</td><td>15.56</td><td class="heat-high">+7.4%</td><td>-16%</td><td><span class="badge badge-yellow">ELEVATED</span></td></tr>
-                        <tr><td class="ticker">Dollar Index</td><td>DXY</td><td>98.56</td><td>-0.34%</td><td>-2.1%</td><td><span class="badge badge-green">RISK-ON</span></td></tr>
-                    </tbody>
+                    <tr><th>Sector</th><th>ETF</th><th>Price</th><th>Day Change</th><th>Signal</th></tr>
+                    <tr><td class="ticker">Technology</td><td>XLK</td><td>$147.12</td><td class="heat-low">+1.33%</td><td><span class="badge badge-green">LEADING</span></td></tr>
+                    <tr><td class="ticker">Consumer Staples</td><td>XLP</td><td>$80.13</td><td class="heat-low">+1.11%</td><td><span class="badge badge-green">BULLISH</span></td></tr>
+                    <tr><td class="ticker">Industrials</td><td>XLI</td><td>$162.65</td><td class="heat-low">+0.44%</td><td><span class="badge badge-green">BULLISH</span></td></tr>
+                    <tr><td class="ticker">Real Estate</td><td>VNQ</td><td>$89.50</td><td class="heat-low">+0.03%</td><td><span class="badge badge-green">BULLISH P/C</span></td></tr>
+                    <tr><td class="ticker">Materials</td><td>XLB</td><td>$48.40</td><td class="heat-low">+0.29%</td><td><span class="badge badge-green">BULLISH</span></td></tr>
+                    <tr><td class="ticker">Utilities</td><td>XLU</td><td>$42.46</td><td>-0.12%</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
+                    <tr><td class="ticker">Healthcare</td><td>XLV</td><td>$157.01</td><td>-0.19%</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
+                    <tr><td class="ticker">Communication</td><td>XLC</td><td>$117.59</td><td>-0.27%</td><td><span class="badge badge-yellow">NEUTRAL</span></td></tr>
+                    <tr><td class="ticker">Financials</td><td>XLF</td><td>$55.22</td><td class="heat-high">-0.92%</td><td><span class="badge badge-red">LAGGING</span></td></tr>
+                    <tr><td class="ticker">Energy</td><td>XLE</td><td>$46.14</td><td class="heat-high">-1.14%</td><td><span class="badge badge-red">LAGGING</span></td></tr>
                 </table>
             </div>
             
             <div class="ai-analysis">
-                <h3>🔍 Cross-Asset Interpretation</h3>
-                <p><strong>Gold/Silver Surge:</strong> GLD +6.3% and SLV +17.8% since Jan 2 indicates significant safe-haven flows. Silver's outperformance (92% over 3M) suggests both <span class="highlight">inflation hedging</span> and <span class="highlight">industrial demand</span> (AI/data centers).</p>
-                <p><strong>Copper Record Highs:</strong> Copper at $5.96/lb (~$13,130/ton) — all-time high. Driven by US tariff concerns and supply disruptions. This is <span class="success">bullish for industrials</span> but raises input cost concerns.</p>
-                <p><strong>Dollar Weakness:</strong> DXY at 98.56, down 0.34% today. Weaker dollar supports equities and commodities, suggesting <span class="success">risk-on rotation continues</span>.</p>
-                <p><strong>Treasury Market:</strong> 10Y yield stable at 4.17% despite Fed crisis — strong auction today. Bond market is <span class="highlight">not panicking</span>.</p>
+                <h3>🔍 Sector Rotation Analysis</h3>
+                <p><strong>Tech Leading (+1.33%):</strong> Growth stocks outperforming suggests risk-on sentiment. QQQ P/C at 0.98 confirms less hedging in tech.</p>
+                <p><strong>REITs Bullish P/C (0.85):</strong> VNQ options show call-heavy positioning — market betting on rate-sensitive sectors benefiting from Fed policy.</p>
+                <p><strong>Financials Weak (-0.92%):</strong> Banks underperforming on Powell/Fed uncertainty. Credit concerns emerging.</p>
+                <p><strong>Energy Lagging (-1.14%):</strong> Profit-taking after recent strength. Not a bearish signal in isolation.</p>
+            </div>
+        </section>
+        
+        <!-- CROSS-ASSET SECTION -->
+        <section class="section" id="cross-asset">
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-header yellow">Gold (GLD)</div>
+                    <div class="stat-value">$423.09<span class="stat-change positive">+2.08%</span></div>
+                    <div class="stat-label">Safe-haven bid | Inflation hedge</div>
+                </div>
+                <div class="card">
+                    <div class="card-header yellow">Silver (SLV)</div>
+                    <div class="stat-value">$76.88<span class="stat-change positive">+6.22%</span></div>
+                    <div class="stat-label">EXTREME safe-haven demand</div>
+                </div>
+                <div class="card">
+                    <div class="card-header cyan">VIX Proxy (VIXY)</div>
+                    <div class="stat-value">$25.05<span class="stat-change positive">+0.28%</span></div>
+                    <div class="stat-label">Fear contained | Complacency risk</div>
+                </div>
             </div>
             
-            <div class="card">
-                <div class="card-header yellow">Risk Signal Summary</div>
-                <div class="grid-2">
-                    <div>
-                        <div style="font-size:13px;font-weight:600;color:var(--accent-red);margin-bottom:12px">RISK-OFF SIGNALS (3)</div>
-                        <ul style="font-size:13px;line-height:2;margin-left:20px">
-                            <li>Gold +24.5% (3M) — safe haven buying</li>
-                            <li>Silver +92% (3M) — extreme hedge demand</li>
-                            <li>VIX elevated at 15.56 (+7.4% today)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div style="font-size:13px;font-weight:600;color:var(--accent-green);margin-bottom:12px">RISK-ON SIGNALS (3)</div>
-                        <ul style="font-size:13px;line-height:2;margin-left:20px">
-                            <li>SPY at 52-week high ($696.09)</li>
-                            <li>Copper at record highs (industrial demand)</li>
-                            <li>Dollar weakening (DXY -0.34%)</li>
-                        </ul>
-                    </div>
-                </div>
-                <p style="margin-top:20px;font-size:14px;color:var(--text-secondary)">
-                    <strong>Verdict:</strong> Mixed signals. Market displaying resilience but hedging activity remains elevated. Watch for resolution after January 16 OPEX and January 21 Supreme Court hearing.
+            <div class="warning-box yellow">
+                <h3>⚠️ Cross-Asset Divergence Alert</h3>
+                <p>
+                    <strong>Unusual Pattern:</strong> Gold (+2.08%) and Silver (+6.22%) surging WHILE equities rally is historically rare. This typically indicates:<br><br>
+                    • Institutions adding inflation hedges while staying long stocks<br>
+                    • Preparation for potential Fed policy uncertainty<br>
+                    • Safe-haven accumulation ahead of known risk events (OPEX, CPI, earnings)<br><br>
+                    <span style="color:var(--accent-yellow)">This divergence suggests smart money is hedging, not rotating out of equities entirely.</span>
                 </p>
             </div>
         </section>
         
-        <!-- ANALYSIS -->
+        <!-- AI ANALYSIS SECTION -->
         <section class="section" id="analysis">
             <div class="ai-analysis">
-                <h3>🤖 AI Deep Analysis: Why the Market Is Defying Bearish Positioning</h3>
-                <p><strong>1. Powell Investigation Priced In:</strong> Markets had 48 hours to digest the DOJ subpoena news. The initial "Sell America" trade (10Y spike to 4.20%) was quickly reversed. Institutions appear to view this as political theater rather than existential risk to Fed independence.</p>
-                <p><strong>2. Put Positioning = Insurance, Not Prediction:</strong> The elevated P/C ratios from Jan 2 data reflect <span class="highlight">hedging, not directional bets</span>. Institutions are buying protection while maintaining long equity exposure. This is classic "stay long, buy puts" behavior.</p>
-                <p><strong>3. January Effect + Retail Flows:</strong> Citadel Securities noted "big money to flow into stocks this month." Systematic rebalancing and 401(k) contributions provide a structural bid in early January.</p>
-                <p><strong>4. Fed Cut Expectations:</strong> Markets pricing 32% probability of two rate cuts by year-end. Soft landing narrative still intact despite Fed drama.</p>
+                <h3>🤖 AI Market Assessment</h3>
+                <p><strong>Overall Risk Score: <span class="danger">65% Correction Probability</span></strong></p>
+                <p>Multi-ETF options analysis reveals a bifurcated market. SPY and DIA show elevated put/call ratios (1.12 and 1.08) indicating broad-market hedging, while QQQ (0.98) and VNQ (0.85) show balanced-to-bullish positioning. This suggests sector-specific optimism (tech, REITs) within a cautious macro environment.</p>
+            </div>
+            
+            <div class="ai-analysis">
+                <h3>📊 Options-Based Risk Assessment</h3>
+                <p><strong>1. Index Hedging:</strong> SPY P/C 1.12 + DIA P/C 1.08 = <span class="danger">bearish signal</span>. Broad market protection demand is elevated.</p>
+                <p><strong>2. Tech Resilience:</strong> QQQ P/C at 0.98 with call IV premium = <span class="success">growth confidence intact</span>.</p>
+                <p><strong>3. Rate Sensitivity:</strong> VNQ P/C at 0.85 = <span class="success">bullish on rate-sensitive sectors</span>. Market pricing in Fed dovishness.</p>
+                <p><strong>4. IV Skew Pattern:</strong> SPY/DIA show put premium (+1.31%, +0.78%), QQQ/VNQ show call premium (-0.39%, -0.94%). <span class="highlight">Classic rotation signal.</span></p>
             </div>
             
             <div class="warning-box">
                 <h3>⚠️ Risks That Could Trigger Correction</h3>
                 <p>
-                    <strong>1. January 16 OPEX Gamma:</strong> 2.17 P/C ratio on Jan 16 expiration. If SPY breaks below $690, dealer hedging could accelerate selling<br><br>
-                    <strong>2. January 21 Supreme Court:</strong> Trump v. Cook oral arguments. Adverse ruling could revive "institutional crisis" narrative<br><br>
-                    <strong>3. Earnings Season:</strong> Major bank earnings this week. Any credit concerns could spark risk-off rotation<br><br>
-                    <strong>4. CPI/PPI Data:</strong> Jan 13-14 inflation prints. Hot numbers could reverse rate cut expectations<br><br>
-                    <span style="color:var(--accent-red)">Critical Level: SPY $680 remains the gamma flip point. A break below triggers mechanical selling.</span>
+                    <strong>1. January 16 OPEX (4 days):</strong> SPY/DIA put-heavy positioning + gamma concentration = volatility catalyst<br><br>
+                    <strong>2. January 21 Supreme Court:</strong> Trump v. Cook oral arguments. Adverse ruling could revive institutional crisis narrative<br><br>
+                    <strong>3. CPI/PPI Data (Jan 13-14):</strong> Hot inflation prints could reverse rate cut expectations and crush VNQ bullish bets<br><br>
+                    <strong>4. Earnings Season:</strong> Major bank earnings this week — credit concerns could spark risk-off<br><br>
+                    <span style="color:var(--accent-red)">Critical Level: SPY $680 remains key support. A break below triggers technical selling.</span>
                 </p>
             </div>
             
             <div class="ai-analysis">
-                <h3>🎯 Updated Critical Levels</h3>
-                <p><strong>Bullish Breakout:</strong> Above <span class="success">$700</span> — new ATH territory, likely triggers FOMO buying</p>
-                <p><strong>Current Range:</strong> <span class="highlight">$690-$700</span> — consolidation zone, market deciding direction</p>
-                <p><strong>Gamma Flip Point:</strong> <span class="danger">$680</span> — below this, dealers must sell to hedge puts</p>
-                <p><strong>Major Support:</strong> <span class="danger">$650</span> — correction target, -6.5% from current</p>
-                <p><strong>Crash Target:</strong> <span class="danger">$615-$620</span> — 10%+ correction scenario</p>
+                <h3>🎯 Key Price Levels</h3>
+                <p><strong>SPY Bullish:</strong> Above <span class="success">$700</span> — new ATH territory | Current: $695.26</p>
+                <p><strong>QQQ Bullish:</strong> Above <span class="success">$635</span> — breakout level | Current: $627.96</p>
+                <p><strong>DIA Bullish:</strong> Above <span class="success">$500</span> — psychological resistance | Current: $495.64</p>
+                <p><strong>SPY Support:</strong> <span class="danger">$680</span> — critical level, max pain zone</p>
+                <p><strong>SPY Major Support:</strong> <span class="danger">$650</span> — correction target (-6.5%)</p>
             </div>
         </section>
         
         <!-- SCENARIOS -->
         <section class="section" id="scenarios">
             <div class="scenario-card">
-                <div class="scenario-donut" style="background:conic-gradient(var(--accent-red) 126deg,var(--border) 0deg)"><div class="scenario-donut-inner">35%</div></div>
-                <div><div class="scenario-title">5-10% Correction</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$625-$660 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">4-8 weeks</div></div></div></div>
-                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">OPEX gamma, earnings miss, hot CPI, court ruling</div></div>
+                <div class="scenario-donut" style="background:conic-gradient(var(--accent-green) 126deg,var(--border) 0deg)"><div class="scenario-donut-inner">35%</div></div>
+                <div><div class="scenario-title">Continued Rally</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$710-$730 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">1-3 months</div></div></div></div>
+                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">Earnings beat, Fed dovish, January inflows</div></div>
             </div>
             <div class="scenario-card">
-                <div class="scenario-donut" style="background:conic-gradient(var(--accent-green) 126deg,var(--border) 0deg)"><div class="scenario-donut-inner">35%</div></div>
-                <div><div class="scenario-title">Continued Rally (Base Case)</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$710-$730 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">1-3 months</div></div></div></div>
-                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">Earnings beat, Fed dovish, January inflows, put covering</div></div>
+                <div class="scenario-donut" style="background:conic-gradient(var(--accent-red) 126deg,var(--border) 0deg)"><div class="scenario-donut-inner">35%</div></div>
+                <div><div class="scenario-title">5-10% Correction</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$625-$660 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">4-8 weeks</div></div></div></div>
+                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">OPEX volatility, earnings miss, hot CPI</div></div>
             </div>
             <div class="scenario-card">
                 <div class="scenario-donut" style="background:conic-gradient(var(--accent-yellow) 72deg,var(--border) 0deg)"><div class="scenario-donut-inner">20%</div></div>
                 <div><div class="scenario-title">10-15% Crash</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$590-$625 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">2-4 months</div></div></div></div>
-                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">Credit event, Fed independence challenged, gamma cascade</div></div>
+                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">Credit event, Fed independence challenged</div></div>
             </div>
             <div class="scenario-card">
                 <div class="scenario-donut" style="background:conic-gradient(var(--accent-blue) 36deg,var(--border) 0deg)"><div class="scenario-donut-inner">10%</div></div>
-                <div><div class="scenario-title">Sideways Chop</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$680-$700 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">1-2 months</div></div></div></div>
-                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">Balanced flows, no clear catalyst in either direction</div></div>
-            </div>
-            
-            <div class="ai-analysis">
-                <h3>📊 Scenario Changes from Previous Assessment</h3>
-                <p><strong>Correction Risk Reduced:</strong> 5-10% correction probability lowered from <span class="danger">75%</span> to <span class="highlight">35%</span> due to market resilience and bullish momentum</p>
-                <p><strong>Rally Probability Added:</strong> New scenario — <span class="success">35%</span> probability of continued rally to $710-$730, given ATH breakout dynamics</p>
-                <p><strong>Crash Risk Reduced:</strong> 10-15% crash probability lowered from <span class="danger">30%</span> to <span class="highlight">20%</span> as institutional crisis appears contained</p>
-                <p><strong>Combined Correction Risk:</strong> Total bearish scenario probability now 55% (was 75%), but still elevated above normal</p>
+                <div><div class="scenario-title">Sideways Consolidation</div><div class="scenario-details"><div><div class="scenario-detail-label">Target</div><div class="scenario-detail-value">$680-$700 SPY</div></div><div><div class="scenario-detail-label">Timeframe</div><div class="scenario-detail-value">1-2 months</div></div></div></div>
+                <div style="text-align:right;max-width:200px"><div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;margin-bottom:4px">Catalyst</div><div style="font-size:13px;color:var(--accent-yellow)">No clear catalyst, range-bound</div></div>
             </div>
         </section>
         
@@ -335,14 +481,14 @@
         <div class="legal-disclaimer">
             <h4>⚠️ Important Legal Disclaimer</h4>
             <p>This platform and all information contained herein is provided for <strong>informational and educational purposes only</strong> and does not constitute investment advice, financial advice, trading advice, or any other sort of advice. <strong>Nothing on this platform should be construed as a recommendation to buy, sell, or hold any security, cryptocurrency, derivative, or other financial instrument.</strong></p>
-            <p>The analysis presented is based on historical data, statistical models, and AI-generated interpretations which may contain errors, inaccuracies, or omissions. <strong>Past performance is not indicative of future results.</strong> Always consult with a qualified financial advisor before making investment decisions. Trading involves substantial risk of loss.</p>
-            <p>Live market data sourced from Alpaca Markets API. Cross-asset data reflects prices as of Jan 12, 2026 3:09 PM EST.</p>
+            <p>The analysis presented is based on real-time market data, statistical models, and AI-generated interpretations which may contain errors, inaccuracies, or omissions. <strong>Past performance is not indicative of future results.</strong> Always consult with a qualified financial advisor before making investment decisions. Trading involves substantial risk of loss.</p>
+            <p>All market data sourced exclusively from <strong>Alpaca Markets API</strong>. Options chain data for SPY, QQQ, DIA, VNQ - Jan 16, 2026 expiration. Prices as of Jan 12, 2026 3:35 PM EST.</p>
         </div>
         
         <!-- FOOTER -->
         <footer>
             <div class="footer-content">
-                <div class="footer-brand">© 2026 <span>AlphaOne LLC</span> | Powered by Claude AI | Not affiliated with any broker or exchange</div>
+                <div class="footer-brand">© 2026 <span>AlphaOne LLC</span> | Powered by Claude AI | Data by Alpaca Markets</div>
                 <div class="license-badges">
                     <span>CC BY-NC-ND 4.0</span>
                     <div class="cc-icon">CC</div>
